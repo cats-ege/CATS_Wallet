@@ -165,7 +165,8 @@
 
         // 지갑 생성
         function createWallet() {
-            fetch('/create_wallet')
+            fetch('http://222.237.140.199:5000/create_wallet')
+
                 .then(response => response.json())
                 .then(data => {
                     currentWallet = data;
@@ -191,7 +192,7 @@
                 return;
             }
 
-            fetch('/recover_wallet', {
+            fetch('http://222.237.140.199:5000/recover_wallet', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -234,7 +235,7 @@
             
             // 캐시 방지를 위한 랜덤 파라미터 추가
             const timestamp = new Date().getTime();
-            fetch(`/balance/${walletAddress}?t=${timestamp}`)
+            fetch(`http://222.237.140.199:5000/balance/${walletAddress}?t=${timestamp}`)
                 .then(response => {
                     if (!response.ok) {
                         console.error('Network response status:', response.status);
@@ -292,7 +293,7 @@
                 amount: amount
             };
 
-            fetch('/transactions/new', {
+            fetch('http://222.237.140.199:5000/transactions/new', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -356,7 +357,7 @@
             loader.style.display = 'block';
             resultDiv.style.display = 'none';
 
-            fetch('/mine?address=' + currentWallet.address)
+            fetch('http://222.237.140.199:5000/mine?address=' + currentWallet.address)
                 .then(response => response.json())
                 .then(data => {
                     loader.style.display = 'none';
@@ -408,7 +409,7 @@
                 amount: amount
             };
 
-            fetch('/issue_token', {
+            fetch('http://222.237.140.199:5000/issue_token', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
